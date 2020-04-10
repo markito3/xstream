@@ -1,8 +1,8 @@
 AR = ar
 RANLIB = ranlib
 
-OBJDIR = .obj/$(BMS_OSNAME)
-LIBDIR = .lib/$(BMS_OSNAME)
+OBJDIR = .obj
+LIBDIR = .lib
 INCLUDES = -I../include
 EXTRA_DIST = debug.h md5_t.pl md5_t.h
 libxstream_a_SOURCES = debug.cpp common.cpp xdr.cpp base64.cpp \
@@ -14,11 +14,7 @@ libxstream_a_OBJECTS_0 = debug.o common.o xdr.o base64.o \
 libxstream_a_OBJECTS = $(addprefix $(OBJDIR)/,$(libxstream_a_OBJECTS_0))
 lib_LIBRARIES = libxstream.a
 
-ifdef HALLD_MY
-INSTALL_DIR = $(HALLD_MY)
-else
-INSTALL_DIR = $(HALLD_HOME)
-endif
+INSTALL_DIR = ..
 
 all: mkdirs $(LIBDIR)/$(lib_LIBRARIES)
 
@@ -36,8 +32,8 @@ $(LIBDIR)/libxstream.a: $(libxstream_a_OBJECTS) $(libxstream_a_DEPENDENCIES)
 	$(RANLIB) $@
 
 install: all
-	mkdir -p $(INSTALL_DIR)/lib/$(BMS_OSNAME)
-	cp -p $(LIBDIR)/$(lib_LIBRARIES) $(INSTALL_DIR)/lib/$(BMS_OSNAME)
+	mkdir -p $(INSTALL_DIR)/lib
+	cp -p $(LIBDIR)/$(lib_LIBRARIES) $(INSTALL_DIR)/lib
 	cp -pr ../include ./tmpinc
 	rm -rf `find ./tmpinc -name ".svn"`
 	mkdir -p $(INSTALL_DIR)/include
