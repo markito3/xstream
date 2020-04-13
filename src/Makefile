@@ -4,6 +4,7 @@ RANLIB = ranlib
 OBJDIR = .obj
 LIBDIR = .lib
 INCLUDES = -I../include
+CXXFLAGS = -fPIC
 EXTRA_DIST = debug.h md5_t.pl md5_t.h
 libxstream_a_SOURCES = debug.cpp common.cpp xdr.cpp base64.cpp \
 	digest.cpp tee.cpp md5.cpp bz.cpp dater.cpp fd.cpp \
